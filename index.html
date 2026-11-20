@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yahia Morabet · DevSecOps</title>
+<meta name="description" content="Portfolio de Yahia Morabet — étudiant en Master Sécurité des Systèmes (2I2S), orienté DevSecOps, Cloud et Cybersécurité. Recherche un stage PFE de 4 à 6 mois dès janvier 2027.">
+<meta property="og:title" content="Yahia Morabet · DevSecOps & Cybersécurité">
+<meta property="og:description" content="Pipelines CI/CD sécurisés, Kubernetes, Terraform, Azure. Recherche un stage PFE DevSecOps dès janvier 2027.">
+<meta property="og:image" content="assets/avatar-working.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* VOICE: sobre, technique, confiant — un ingénieur DevSecOps qui t'accueille dans son poste de travail.
+   IDEA: un pipeline CI/CD — chaque section est une étape qui passe au vert.
+   PICTURE: l'avatar 3D interactif dans un halo froid ; plus bas, le pipeline sécurisé dessiné étape par étape.
+   COLOUR and TYPE: bleu nuit #0b1220, ardoise, accent bleu glacier #6cc6ff, statut vert « passed » ; Sora + Inter.
+   LAYOUT: nav, hero plein écran, chiffres clés, projets, pipeline, parcours, compétences, contact. */
+:root{color-scheme:dark;--bg:#0b1220;--bg2:#0f192b;--panel:#121d31;--line:rgba(148,170,200,.16);--ink:#e8eef7;--muted:#97a8c0;--accent:#6cc6ff;--accent-ink:#04121f;--ok:#4ade80;--gx:50%}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:Sora,sans-serif;text-wrap:balance}
+.wrap{max-width:1240px;margin:auto}
+.band{padding:clamp(56px,7vw,104px) max(5vw,16px)}
+.sec-title{font-size:clamp(28px,3.4vw,42px);line-height:1.08;margin:0 0 10px}
+.sec-lede{color:var(--muted);margin:0 0 36px;max-width:62ch;font-size:17px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:12px;font-weight:600;text-decoration:none;border:1px solid var(--line);background:rgba(255,255,255,.04);transition:background .2s,border-color .2s,transform .2s}
+.btn:hover{background:rgba(255,255,255,.09);border-color:rgba(148,170,200,.35)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.primary:hover{background:#8fd4ff}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(11,18,32,.82);backdrop-filter:blur(12px);border-color:var(--line)}
+.nav .in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px max(5vw,16px);max-width:1340px;margin:auto}
+.logo{font:700 18px/1 Sora,sans-serif;text-decoration:none;display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--accent);color:var(--accent-ink)}
+.links{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
+.links a{display:inline-flex;align-items:center;min-height:44px;padding:0 13px;border-radius:10px;text-decoration:none;font-weight:500;color:var(--muted);font-size:15px}
+.links a:hover,.links a.on{color:var(--ink);background:rgba(255,255,255,.05)}
+.menu{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:max(660px,100svh);overflow:hidden;isolation:isolate;
+  background:radial-gradient(ellipse 55% 70% at var(--gx) 55%,#1f2e48 0,#16233a 35%,#0e1728 70%,var(--bg) 100%)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.35;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000,transparent 75%);mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000,transparent 75%)}
+.intro{position:absolute;z-index:5;left:max(5vw,16px);top:clamp(124px,21vh,210px);max-width:min(410px,34vw);text-shadow:0 1px 14px rgba(11,18,32,.9)}
+.hero::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(90deg,rgba(11,18,32,.9) 0,rgba(11,18,32,.55) 28%,transparent 46%)}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);margin:0 0 16px}
+.status i{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(74,222,128,.18);animation:ping 2s infinite}
+@keyframes ping{50%{box-shadow:0 0 0 7px rgba(74,222,128,.05)}}
+.intro h1{font-size:clamp(34px,4.3vw,54px);line-height:1.04;margin:0 0 12px}
+.intro .role{font:600 clamp(18px,1.7vw,22px)/1.3 Sora,sans-serif;color:var(--accent);margin:0 0 14px}
+.intro .pitch{color:var(--muted);margin:0 0 22px;font-size:16px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px}
+.hint{display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);font-size:14px;color:var(--muted)}
+.hint svg{width:20px;height:20px;flex:none;animation:nudge 2.2s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translate(0,0)}25%{transform:translate(-5px,2px)}60%{transform:translate(6px,-1px)}}
+
+.stage{position:absolute;left:59%;bottom:0;transform:translateX(-50%);width:min(1120px,100vw,calc((100svh - 90px) * 1.339));aspect-ratio:2400/1792;z-index:2;perspective:1400px}
+.rig{position:absolute;inset:0;transform-origin:52% 100%;opacity:0;will-change:transform;
+  --mk:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%),radial-gradient(ellipse 60% 112% at 52% 100%,#000 66%,transparent 100%);
+  -webkit-mask-image:var(--mk);-webkit-mask-composite:source-in;mask-image:var(--mk);mask-composite:intersect}
+.ready .rig{opacity:1;transition:opacity .6s,transform .7s cubic-bezier(.22,1,.36,1)}
+.rig canvas{width:100%;height:100%;display:block}
+.loader{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);font-size:14px;color:var(--muted);transition:opacity .4s}
+.ready .loader{opacity:0}
+.procedural[data-state=working] .rig{animation:breathe 4.2s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.008) translateY(-.25%)}}
+.procedural[data-state=lookLeft] .rig{transform:rotateY(7deg) rotateZ(-.8deg) translateX(-1.2%)}
+.procedural[data-state=lookRight] .rig{transform:rotateY(-7deg) rotateZ(.8deg) translateX(1.2%)}
+.procedural[data-state=notice] .rig{transform:scale(1.025) translateY(-.6%)}
+.procedural[data-state=headphones] .rig,.procedural[data-state=wave] .rig{transform:scale(1.035) translateY(-1%)}
+.procedural[data-state=point] .rig{transform:scale(1.03) translateY(.4%) rotateX(4deg)}
+.fx{position:absolute;z-index:4;font-size:clamp(34px,4.4vw,58px);line-height:1;opacity:0;transform:scale(.4);transition:opacity .25s,transform .35s cubic-bezier(.34,1.56,.64,1);pointer-events:none;filter:drop-shadow(0 6px 12px rgba(0,0,0,.45))}
+.fx.on{opacity:1;transform:scale(1)}
+.fx-wave{left:30%;top:24%}.fx-wave.on{animation:wave .5s ease-in-out infinite alternate}
+@keyframes wave{from{transform:rotate(-18deg)}to{transform:rotate(22deg)}}
+.fx-phones{left:49%;top:6%}.fx-phones.on{animation:lift 1.2s ease-out}
+@keyframes lift{from{transform:translateY(120%) scale(.6)}to{transform:none}}
+.fx-point{left:74%;top:60%}.fx-point.on{animation:poke .7s ease-in-out infinite alternate}
+@keyframes poke{to{transform:translateY(18%)}}
+.bubble{position:absolute;z-index:6;padding:11px 17px;border-radius:16px;background:#fff;color:#0b1220;font:600 clamp(14px,1.25vw,16px)/1.3 Sora,sans-serif;white-space:nowrap;box-shadow:0 14px 34px rgba(0,0,0,.4);opacity:0;transform:translateY(8px) scale(.96);transition:opacity .25s,transform .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
+.bubble.on{opacity:1;transform:none}
+.bubble::after{content:"";position:absolute;width:14px;height:14px;background:#fff;transform:rotate(45deg);border-radius:3px;bottom:-5px}
+.bubble[data-side=left]{right:50%;top:8%}.bubble[data-side=left]::after{right:28px}
+.bubble[data-side=right]{left:54%;top:8%}.bubble[data-side=right]::after{left:28px}
+.bubble[data-side=top]{left:52%;top:-1%;transform:translate(-50%,8px) scale(.96)}
+.bubble[data-side=top].on{transform:translate(-50%,0)}
+.bubble[data-side=top]::after{left:50%;margin-left:-7px}
+.scrollcue{position:absolute;z-index:7;left:50%;bottom:18px;transform:translateX(-50%);display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--accent);color:var(--accent-ink);box-shadow:0 8px 24px rgba(108,198,255,.35)}
+.scrollcue svg{width:22px;height:22px}
+.scrollcue.pulse{animation:bounce .8s ease-in-out infinite alternate}
+@keyframes bounce{to{transform:translate(-50%,-10px)}}
+.zones{position:absolute;inset:0;z-index:1;display:none;grid-template-columns:35fr 30fr 35fr;pointer-events:none}
+.debug .zones{display:grid}
+.zones div{border:2px dashed rgba(108,198,255,.4);display:grid;place-items:start center;padding-top:90px;font:700 13px Sora;color:var(--accent)}
+.zones div.active{background:rgba(108,198,255,.06)}
+
+/* ---------- CHIFFRES ---------- */
+.stats{background:var(--bg2);border-block:1px solid var(--line);padding:28px max(5vw,16px)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.stat b{display:block;font:700 clamp(26px,3vw,36px)/1.1 Sora,sans-serif;color:var(--ink)}
+.stat span{color:var(--muted);font-size:14px}
+
+/* ---------- À PROPOS ---------- */
+.about{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.about p{margin:0 0 16px;color:#c9d5e6;font-size:17px;max-width:62ch}
+.facts{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:18px;background:var(--panel)}
+.facts li{display:flex;justify-content:space-between;gap:16px;padding:15px 20px;border-bottom:1px solid var(--line);font-size:15px}
+.facts li:last-child{border:0}
+.facts span{color:var(--muted)}
+.facts b{font-weight:600;text-align:right}
+
+/* ---------- PROJETS ---------- */
+.projects{background:var(--bg2)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{position:relative;display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px;transition:border-color .25s,transform .25s}
+.card:hover{border-color:rgba(108,198,255,.45);transform:translateY(-3px)}
+.card .top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 12px}
+.kind{font-size:13px;color:var(--accent);font-weight:600}
+.card h3{font-size:21px;line-height:1.25;margin:0 0 10px}
+.card p{margin:0 0 12px;color:#c9d5e6;font-size:15.5px}
+.card ul{margin:0 0 16px;padding-left:18px;color:#c9d5e6;font-size:15px}
+.card ul li{margin-bottom:6px}
+.card .metric{display:inline-flex;gap:8px;align-items:baseline;padding:8px 12px;border-radius:10px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.25);color:#bdf5cf;font-size:14px;margin:0 0 16px;align-self:flex-start}
+.card .metric b{font-family:Sora;font-size:18px;color:var(--ok)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:auto 0 16px;padding-top:4px}
+.tags span{font:500 12.5px/1 "JetBrains Mono",monospace;padding:6px 9px;border-radius:7px;background:rgba(108,198,255,.08);color:#b9e3ff;border:1px solid rgba(108,198,255,.18)}
+.card .repo{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;text-decoration:none;color:var(--ink);min-height:44px}
+.card .repo:hover{color:var(--accent)}
+.card .repo svg{width:18px;height:18px}
+.more{margin-top:40px}
+.more h3{font-size:18px;margin:0 0 14px}
+.mini{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.mini a{display:block;padding:16px 18px;border-radius:14px;border:1px solid var(--line);text-decoration:none;background:rgba(255,255,255,.02);transition:border-color .2s}
+.mini a:hover{border-color:rgba(108,198,255,.45)}
+.mini b{display:block;font-size:15px;margin-bottom:4px}
+.mini span{font-size:13.5px;color:var(--muted)}
+
+/* ---------- PIPELINE ---------- */
+.pipe{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;margin:8px 0 18px;counter-reset:s}
+.step{position:relative;padding:0 6px;text-align:center}
+.step::before{content:"";position:absolute;top:27px;left:-50%;right:50%;height:2px;background:var(--line)}
+.step:first-child::before{display:none}
+.step.done::before{background:linear-gradient(90deg,var(--ok),var(--ok))}
+.dot{position:relative;z-index:1;display:grid;place-items:center;width:56px;height:56px;margin:0 auto 12px;border-radius:16px;background:var(--panel);border:1px solid var(--line);transition:all .4s}
+.dot svg{width:24px;height:24px;color:var(--muted);transition:color .4s}
+.step.done .dot{border-color:rgba(74,222,128,.55);background:rgba(74,222,128,.08)}
+.step.done .dot svg{color:var(--ok)}
+.step b{display:block;font:600 15px/1.25 Sora,sans-serif;margin-bottom:4px}
+.step span{display:block;font-size:13px;color:var(--muted);line-height:1.4}
+.pipe-note{color:var(--muted);font-size:14px;margin:0}
+.replay{margin-top:18px}
+
+/* ---------- PARCOURS ---------- */
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,5vw,64px)}
+.cols h3{font-size:20px;margin:0 0 20px}
+.tl{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.tl li{position:relative;padding:0 0 26px 24px}
+.tl li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.tl time{display:block;font-size:13.5px;color:var(--accent);font-weight:600;white-space:nowrap}
+.tl b{display:block;font-size:16.5px;margin:2px 0}
+.tl em{display:block;font-style:normal;color:var(--muted);font-size:14.5px;margin-bottom:6px}
+.tl p{margin:0;color:#c9d5e6;font-size:15px}
+
+/* ---------- COMPÉTENCES ---------- */
+.skills{background:var(--bg2)}
+.sk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.sk div{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
+.sk h3{font-size:16.5px;margin:0 0 14px}
+.sk .tags{margin:0;padding:0}
+.extra{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+.extra div{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
+.extra h3{font-size:16.5px;margin:0 0 10px}
+.extra p{margin:0;color:#c9d5e6;font-size:15px}
+.extra strong{color:var(--ink)}
+
+/* ---------- CONTACT ---------- */
+.contact .box{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:32px;align-items:center;padding:clamp(28px,4vw,48px);border-radius:24px;border:1px solid rgba(108,198,255,.3);background:radial-gradient(ellipse at 0 0,rgba(108,198,255,.12),transparent 60%),var(--panel)}
+.contact h2{margin:0 0 10px;font-size:clamp(26px,3vw,38px);line-height:1.1}
+.contact p{margin:0 0 20px;color:#c9d5e6}
+.clist{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.clist a,.clist button{display:flex;align-items:center;gap:12px;width:100%;min-height:52px;padding:0 16px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);text-decoration:none;color:var(--ink);font:500 15px Inter,sans-serif;cursor:pointer;text-align:left}
+.clist a:hover,.clist button:hover{border-color:rgba(108,198,255,.45)}
+.clist svg{width:20px;height:20px;color:var(--accent);flex:none}
+.clist small{margin-left:auto;color:var(--muted);font-size:12.5px}
+footer{padding:28px max(5vw,16px);border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+.card.reveal.in:hover{transform:translateY(-3px)}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1100px){.mini{grid-template-columns:repeat(2,minmax(0,1fr))}.sk{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:960px){
+  .hero{display:flex;flex-direction:column;min-height:auto}
+  .intro{position:relative;left:auto;top:auto;max-width:640px;margin:0 auto;padding:108px max(5vw,16px) 8px;text-align:center}
+  .cta{justify-content:center}
+  .hero::after{display:none}
+  .status{font-size:13px}
+  .stage{position:relative;left:auto;transform:none;width:min(100%,680px);margin:12px auto 0}
+  .bubble{white-space:normal;width:max-content;max-width:72vw;text-align:center}
+  .bubble[data-side=top]{top:-4%}
+  .grid,.about,.cols,.contact .box,.extra{grid-template-columns:minmax(0,1fr)}
+  .stats .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pipe{grid-template-columns:minmax(0,1fr);gap:4px}
+  .step{display:grid;grid-template-columns:56px minmax(0,1fr);gap:0 16px;text-align:left;align-items:center;padding:0 0 10px}
+  .step::before{top:-50%;bottom:50%;left:27px;right:auto;width:2px;height:auto}
+  .dot{margin:0;grid-row:span 2}
+  .step b{align-self:end}.step span{align-self:start}
+}
+@media (max-width:760px){
+  .menu{display:grid;place-items:center}
+  .links{position:absolute;top:68px;left:12px;right:12px;flex-direction:column;align-items:stretch;padding:8px;border-radius:16px;background:rgba(15,25,43,.97);border:1px solid var(--line);display:none}
+  .nav.open .links{display:flex}
+  .links a{min-height:48px}
+}
+@media (max-width:560px){.mini,.sk{grid-template-columns:minmax(0,1fr)}.card{padding:22px}.facts li{flex-direction:column;gap:2px}.facts b{text-align:left}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}html{scroll-behavior:auto}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-gh" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 5h18v14H3zM3 6l9 7 9-7"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m-5-5 5 5 5-5M4 21h16"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="in">
+    <a class="logo" href="#hero" aria-label="Accueil">YM</a>
+    <ul class="links" id="links">
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#pipeline">Pipeline</a></li>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="menu" id="menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="links">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="hero" aria-label="Présentation">
+  <div class="intro">
+    <p class="status"><i></i>Disponible pour un stage PFE · janvier 2027 · Rabat</p>
+    <h1>Je suis Yahia Morabet</h1>
+    <p class="role">Cybersécurité &amp; DevSecOps</p>
+    <p class="pitch">J'automatise le déploiement d'applications avec des pipelines CI/CD qui intègrent la sécurité à chaque étape — Docker, Kubernetes, Terraform, Azure.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projets">Voir mes projets</a>
+      <a class="btn" href="assets/CV_Yahia_Morabet_DevSecOps.pdf" target="_blank" rel="noopener"><svg><use href="#i-dl"/></svg>CV (PDF)</a>
+    </div>
+    <p class="hint" id="hint">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 7.5-6.2 1.6L10 18z" fill="#6cc6ff" stroke="#0b1220" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      <span id="hintText">Bouge ton curseur pour m'appeler !</span>
+    </p>
+  </div>
+
+  <div class="stage" id="stage" data-state="working" role="img" aria-label="Avatar 3D de Yahia qui travaille sur son ordinateur portable">
+    <div class="rig"><canvas id="avatar"></canvas></div>
+    <span class="loader">Chargement…</span>
+    <span class="fx fx-phones" aria-hidden="true">🎧</span>
+    <span class="fx fx-wave" aria-hidden="true">👋</span>
+    <span class="fx fx-point" aria-hidden="true">👇</span>
+    <div class="bubble" id="bubble" aria-live="polite"></div>
+  </div>
+
+  <div class="zones" aria-hidden="true"><div data-z="left">LEFT</div><div data-z="center">CENTER</div><div data-z="right">RIGHT</div></div>
+
+  <a class="scrollcue" id="scrollcue" href="#apropos" aria-label="Voir la suite du portfolio">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </a>
+</section>
+
+<section class="stats" aria-label="Chiffres clés">
+  <div class="wrap">
+    <div class="stat"><b data-count="116">116</b><span>requêtes de bots piégées par un canary token (HoneyLeak)</span></div>
+    <div class="stat"><b>Top 90</b><span>sur 1 156 équipes — Academia Cyber Competition 2026</span></div>
+    <div class="stat"><b data-count="4">4</b><span>scanners de sécurité dans ma CI : Gitleaks, Semgrep, Checkov, Trivy</span></div>
+    <div class="stat"><b data-count="2">2</b><span>stages chez ASRIT (web, QA et mobile)</span></div>
+  </div>
+</section>
+
+<section class="band" id="apropos">
+  <div class="wrap about reveal">
+    <div>
+      <h2 class="sec-title">À propos</h2>
+      <p>Étudiant en Master Sécurité des Systèmes et Ingénierie Informatique (2I2S) à la Faculté des Sciences de Rabat, je me spécialise en <strong>DevSecOps</strong> : construire des chaînes CI/CD qui déploient automatiquement des applications conteneurisées tout en bloquant les failles avant la production.</p>
+      <p>Mon fil rouge : la sécurité doit être automatique. Secrets détectés avant le commit, code analysé (SAST), infrastructure vérifiée (IaC), images scannées, déploiement sans mot de passe stocké grâce à OIDC, puis supervision avec Prometheus et Grafana.</p>
+      <p>Je recherche un <strong>stage de fin d'études de 4 à 6 mois en DevSecOps</strong>, à partir de janvier 2027.</p>
+    </div>
+    <ul class="facts">
+      <li><span>Formation</span><b>Master 2I2S · UM5 Rabat (2025–2027)</b></li>
+      <li><span>Spécialité</span><b>DevSecOps · Cloud · Cybersécurité</b></li>
+      <li><span>Recherche</span><b>Stage PFE 4–6 mois</b></li>
+      <li><span>Disponibilité</span><b>Janvier 2027</b></li>
+      <li><span>Localisation</span><b>Rabat, Maroc</b></li>
+      <li><span>Langues</span><b>Arabe · Français C2 · Anglais C1</b></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band projects" id="projets">
+  <div class="wrap">
+    <h2 class="sec-title reveal">Projets</h2>
+    <p class="sec-lede reveal">Des projets concrets, tous publiés sur GitHub, centrés sur l'automatisation et la sécurité de la chaîne logicielle.</p>
+    <div class="grid" id="projectGrid"></div>
+
+    <div class="more reveal">
+      <h3>Autres dépôts</h3>
+      <div class="mini" id="miniGrid"></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="pipeline">
+  <div class="wrap">
+    <h2 class="sec-title reveal">Comment je sécurise un déploiement</h2>
+    <p class="sec-lede reveal">Le pipeline de ma plateforme DevSecOps Cloud : chaque commit traverse ces contrôles avant d'atteindre le cluster Kubernetes.</p>
+    <div class="pipe" id="pipe" role="list"></div>
+    <p class="pipe-note">Une étape en échec bloque le déploiement : aucune clé, aucune vulnérabilité critique ni mauvaise configuration n'arrive en production.</p>
+    <button class="btn replay" id="replay" type="button">Relancer le pipeline</button>
+  </div>
+</section>
+
+<section class="band" id="parcours" style="background:var(--bg2)">
+  <div class="wrap cols">
+    <div class="reveal">
+      <h3>Expériences professionnelles</h3>
+      <ol class="tl">
+        <li><time>Juil. 2025 – Août 2025</time><b>Stagiaire Développeur Web &amp; Assurance Qualité</b><em>ASRIT · Tétouan</em>
+          <p>Modernisation du portail web de l'association : modules dynamiques et sécurisation des accès utilisateurs. Tests fonctionnels et validation de la logique applicative.</p></li>
+        <li><time>Juin 2024 – Août 2024</time><b>Stagiaire Développeur Mobile — Projet « SMARTER »</b><em>ASRIT · Tétouan</em>
+          <p>Application mobile éducative interactive (quiz, gestion sécurisée des scores). Optimisation UX/UI, recette fonctionnelle et documentation technique.</p></li>
+      </ol>
+    </div>
+    <div class="reveal">
+      <h3>Formation</h3>
+      <ol class="tl">
+        <li><time>2025 – 2027</time><b>Master Sécurité des Systèmes et Ingénierie Informatique (2I2S)</b><em>Université Mohammed V — Faculté des Sciences, Rabat</em></li>
+        <li><time>2021 – 2025</time><b>Licence Sciences Mathématiques et Informatique (SMI)</b><em>Université Abdelmalek Essaâdi — Faculté des Sciences, Tétouan · Mention Assez Bien</em></li>
+        <li><time>2021</time><b>Baccalauréat Sciences Mathématiques (Option B)</b><em>Lycée Qualifiant Hassan II, Tétouan · Mention Assez Bien</em></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="band skills" id="competences">
+  <div class="wrap">
+    <h2 class="sec-title reveal">Compétences</h2>
+    <p class="sec-lede reveal">Les outils que j'utilise réellement dans mes projets.</p>
+    <div class="sk reveal" id="skills"></div>
+    <div class="extra reveal">
+      <div><h3>Compétition</h3><p><strong>Academia Cyber Competition 2026</strong> (DGSSI &amp; SecDojo) — Top 90 sur plus de 1 156 équipes, challenges d'investigation et de cyberdéfense. Mars 2026.</p></div>
+      <div><h3>Langues</h3><p><strong>Arabe</strong> langue maternelle · <strong>Français</strong> courant (C2) · <strong>Anglais</strong> courant (C1) · <strong>Espagnol</strong> intermédiaire (A2)</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band contact" id="contact">
+  <div class="wrap box reveal">
+    <div>
+      <h2>Vous recrutez un stagiaire DevSecOps ?</h2>
+      <p>Disponible à partir de janvier 2027 pour un stage de fin d'études de 4 à 6 mois, à Rabat ou à distance. Je réponds rapidement.</p>
+      <a class="btn primary" href="assets/CV_Yahia_Morabet_DevSecOps.pdf" target="_blank" rel="noopener"><svg><use href="#i-dl"/></svg>Télécharger mon CV</a>
+    </div>
+    <ul class="clist">
+      <li><button type="button" data-copy="Yahya20031@outlook.fr"><svg><use href="#i-mail"/></svg>Yahya20031@outlook.fr<small>Copier</small></button></li>
+      <li><button type="button" data-copy="+212 771 753 944"><svg><use href="#i-phone"/></svg>+212 771 753 944<small>Copier</small></button></li>
+      <li><a href="https://www.linkedin.com/in/yahia-morabet" target="_blank" rel="noopener"><svg><use href="#i-in"/></svg>linkedin.com/in/yahia-morabet<small>Ouvrir</small></a></li>
+      <li><a href="https://github.com/MorabetYahia" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>github.com/MorabetYahia<small>Ouvrir</small></a></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Yahia Morabet</span><span>Rabat, Maroc · Fait main en HTML, CSS et JavaScript</span></div></footer>
+
+<script>
+{
+/* ================= DONNÉES ================= */
+const GH = 'https://github.com/MorabetYahia/';
+const PROJECTS = [
+  { kind:'DevSecOps · Cloud', title:'Plateforme DevSecOps Cloud', repo:'devsecops-cloud',
+    desc:'CI/CD sécurisée de bout en bout vers Azure Kubernetes Service, avec infrastructure décrite en code.',
+    points:['Infrastructure Azure en Terraform : cluster AKS managé et application conteneurisée avec Docker.',
+            'Pipeline GitHub Actions : tests, Gitleaks, Semgrep, Checkov et Trivy, puis déploiement continu sur AKS.',
+            'Connexion GitHub → Azure sans mot de passe stocké (OIDC) ; supervision Prometheus & Grafana.'],
+    tags:['Terraform','AKS','Kubernetes','Docker','GitHub Actions','OIDC','Prometheus','Grafana'] },
+  { kind:'Sécurité · Threat intel', title:'HoneyLeak Defense', repo:'HoneyLeak-Defense-Yahia-',
+    desc:'Pipeline défensif contre les bots qui volent les secrets publiés sur GitHub.',
+    points:['Deux barrières : Gitleaks en hook pre-commit, puis dans la CI GitHub Actions — toute clé est bloquée avant publication.',
+            'Canary token (fausse clé piégée) publié volontairement sur un dépôt public, puis analyse des accès : IOC et MITRE ATT&CK.'],
+    metric:['116','requêtes malveillantes · 12 IP · 8 pays'],
+    tags:['Gitleaks','GitHub Actions','Canary tokens','Python','MITRE ATT&CK'] },
+  { kind:'DevSecOps · AppSec', title:'Pipeline CI/CD — OWASP Juice Shop', repo:'Pipeline_For_OWASPshop_Yahia-',
+    desc:'Chaîne d’intégration et de déploiement continus appliquée à une application volontairement vulnérable.',
+    points:['Pipeline GitHub Actions avec analyse statique du code (Semgrep, SAST).',
+            'Scan des vulnérabilités des images Docker avec Trivy et automatisation des contrôles.'],
+    tags:['GitHub Actions','Semgrep','Trivy','Docker','TypeScript'] },
+  { kind:'Mobile · PFE Licence', title:'PeakForm', repo:'PeakForm-',
+    desc:'Application de coaching sportif et nutritionnel : programmes personnalisés, suivi des progrès, messagerie coach–client et boutique.',
+    points:['Application mobile React Native (Expo) avec back-end Supabase.',
+            'Site vitrine responsive et bilingue (React, i18next) avec téléchargement par QR code et back-office d’administration.'],
+    tags:['React Native','Expo','Supabase','React','i18next'] }
+];
+const MINI = [
+  ['Smart_Home_IOT','Smart Home préventive — module Internet des Objets (Python)'],
+  ['Projet_Dev_Web-YZS','Application web de gestion de ressources (TypeScript)'],
+  ['ProjetJava-Gestion-Intelligente-du-Trafic-Urbain','Gestion intelligente du trafic urbain (Java)'],
+  ['Yahia-backup-scripts','Mes scripts de sauvegarde']
+];
+const SKILLS = [
+  ['CI/CD & DevOps',['GitHub Actions','Docker','Kubernetes (AKS)','Helm','Terraform','Microsoft Azure','Git']],
+  ['Sécurité DevSecOps',['Gitleaks','Semgrep (SAST)','Checkov (IaC)','Trivy','OIDC','Canary tokens']],
+  ['Systèmes & supervision',['Linux Ubuntu / Kali','Windows Server','Prometheus','Grafana','Wazuh (SIEM)']],
+  ['Développement',['Java','React','React Native','TypeScript','Python']]
+];
+const ICON = {
+  commit:'<path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM2 12h6m8 0h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+  key:'<path d="M15 7a4 4 0 1 1-3.9 4.9L4 19v-3h3v-3h2.1A4 4 0 0 1 15 7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>',
+  code:'<path d="m8 8-4 4 4 4m8-8 4 4-4 4M14 5l-4 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+  iac:'<path d="M4 6h16v5H4zM4 13h16v5H4zM8 8.5h.01M8 15.5h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+  box:'<path d="m12 3 8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12 4 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>',
+  k8s:'<path d="M12 2.5 20.5 7v10L12 21.5 3.5 17V7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>',
+  chart:'<path d="M4 20V4m0 16h16M8 16l4-5 3 3 5-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+};
+const PIPE = [
+  ['commit','Commit','Hook pre-commit'],
+  ['key','Gitleaks','Secrets bloqués'],
+  ['code','Semgrep','Analyse du code (SAST)'],
+  ['iac','Checkov','Terraform vérifié'],
+  ['box','Trivy','Image Docker scannée'],
+  ['k8s','Déploiement AKS','OIDC, sans mot de passe'],
+  ['chart','Supervision','Prometheus & Grafana']
+];
+
+/* ================= RENDU ================= */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+$('#projectGrid').innerHTML = PROJECTS.map(p => `
+  <article class="card reveal">
+    <div class="top"><span class="kind">${esc(p.kind)}</span></div>
+    <h3>${esc(p.title)}</h3>
+    <p>${esc(p.desc)}</p>
+    <ul>${p.points.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+    ${p.metric ? `<span class="metric"><b>${esc(p.metric[0])}</b>${esc(p.metric[1])}</span>` : ''}
+    <div class="tags">${p.tags.map(t => `<span>${esc(t)}</span>`).join('')}</div>
+    <a class="repo" href="${GH + p.repo}" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Voir le code sur GitHub<svg><use href="#i-arrow"/></svg></a>
+  </article>`).join('');
+$('#miniGrid').innerHTML = MINI.map(([r,d]) => `<a href="${GH + r}" target="_blank" rel="noopener"><b>${esc(r.replace(/[-_]+/g,' ').trim())}</b><span>${esc(d)}</span></a>`).join('');
+$('#skills').innerHTML = SKILLS.map(([h,l]) => `<div><h3>${esc(h)}</h3><div class="tags">${l.map(t => `<span>${esc(t)}</span>`).join('')}</div></div>`).join('');
+$('#pipe').innerHTML = PIPE.map(([i,b,s]) => `<div class="step" role="listitem"><div class="dot"><svg viewBox="0 0 24 24" aria-hidden="true">${ICON[i]}</svg></div><b>${b}</b><span>${s}</span></div>`).join('');
+
+/* Pipeline animé */
+const steps = [...document.querySelectorAll('.step')];
+let pipeTimers = [];
+function runPipe(){
+  pipeTimers.forEach(clearTimeout); pipeTimers = [];
+  steps.forEach(s => s.classList.remove('done'));
+  steps.forEach((s, i) => pipeTimers.push(setTimeout(() => s.classList.add('done'), 350 + i * 420)));
+}
+$('#replay').addEventListener('click', runPipe);
+
+/* Apparition au scroll */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in'); io.unobserve(e.target);
+}), { threshold:.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+const pipeObs = new IntersectionObserver(es => { if (es[0].isIntersecting){ runPipe(); pipeObs.disconnect(); } }, { threshold:.4 });
+pipeObs.observe($('#pipe'));
+
+/* Nav : fond au scroll, menu mobile, lien actif */
+const nav = $('#nav'), menu = $('#menu');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), { passive:true });
+menu.addEventListener('click', () => { const o = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', o); });
+document.querySelectorAll('.links a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); menu.setAttribute('aria-expanded', false); }));
+const navLinks = [...document.querySelectorAll('.links a')];
+const secObs = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+}), { rootMargin:'-45% 0px -50% 0px' });
+['apropos','projets','pipeline','parcours','competences','contact'].forEach(id => secObs.observe(document.getElementById(id)));
+
+/* Copier e-mail / téléphone */
+document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', async () => {
+  const small = b.querySelector('small');
+  try { await navigator.clipboard.writeText(b.dataset.copy); small.textContent = 'Copié ✓'; }
+  catch { small.textContent = 'Sélectionne le texte'; }
+  setTimeout(() => small.textContent = 'Copier', 1800);
+}));
+
+/* ================= HERO : MOTEUR DE FRAMES =================
+   Remplace chaque tableau `frames` par tes images (ex: 'assets/frames/look-left/001.webp').
+   Dès qu'un état a plus d'une frame, le mode simulé ("procedural") se coupe. */
+const BASE = 'assets/avatar-working.jpg';
+const STATES = {
+  working:    { frames:[BASE], fps:12, loop:true  },
+  lookLeft:   { frames:[BASE], fps:24, loop:false },
+  lookRight:  { frames:[BASE], fps:24, loop:false },
+  notice:     { frames:[BASE], fps:24, loop:false },
+  headphones: { frames:[BASE], fps:24, loop:false },
+  wave:       { frames:[BASE], fps:24, loop:true  },
+  point:      { frames:[BASE], fps:24, loop:true  }
+};
+const SEQ = {
+  left:   [{ s:'lookLeft',  d:2500, msg:"Quelqu'un par ici à gauche ?", side:'left' }],
+  right:  [{ s:'lookRight', d:2500, msg:"Quelqu'un par ici à droite ?", side:'right' }],
+  center: [
+    { s:'notice',     d:1000, msg:"Hey, c'est toi !", side:'top' },
+    { s:'headphones', d:1300, msg:"Hey, c'est toi !", side:'top', fx:'phones' },
+    { s:'wave',       d:1800, msg:"Salut !",          side:'top', fx:'wave' },
+    { s:'point',      d:2600, msg:"Découvre mon portfolio juste en dessous", side:'top', fx:'point', cue:true }
+  ]
+};
+const DWELL = { left:140, right:140, center:380 };
+const ZONE_SPLIT = [0.35, 0.65];
+
+const hero = $('#hero'), stage = $('#stage'), canvas = $('#avatar'), ctx = canvas.getContext('2d');
+const bubble = $('#bubble'), cue = $('#scrollcue');
+const fx = { phones:stage.querySelector('.fx-phones'), wave:stage.querySelector('.fx-wave'), point:stage.querySelector('.fx-point') };
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouch = () => matchMedia('(hover: none), (pointer: coarse)').matches || innerWidth < 768;
+
+const cache = new Map();
+const urls = [...new Set(Object.values(STATES).flatMap(s => s.frames))];
+if (Object.values(STATES).every(s => s.frames.length === 1)) stage.classList.add('procedural');
+const load = u => new Promise(res => {
+  const img = new Image(); img.decoding = 'async';
+  img.onload = () => (img.decode ? img.decode().catch(() => {}) : Promise.resolve()).then(() => { cache.set(u, img); res(); });
+  img.onerror = () => { console.warn('Frame manquante :', u); res(); };
+  img.src = u;
+});
+
+const player = { state:'working', idx:0, acc:0, last:0, prev:null, fadeT:1 };
+const FADE = 160;
+let dirty = true;
+const currentImg = () => { const f = STATES[player.state].frames; return cache.get(f[Math.min(player.idx, f.length - 1)]); };
+function play(name){
+  if (!STATES[name]) return;
+  player.prev = currentImg(); player.fadeT = 0;
+  player.state = name; player.idx = 0; player.acc = 0;
+  stage.dataset.state = name;
+}
+function resize(){
+  const r = canvas.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+  canvas.width = Math.round(r.width * dpr); canvas.height = Math.round(r.height * dpr); dirty = true;
+}
+function draw(img, a){ if (!img) return; ctx.globalAlpha = a; ctx.drawImage(img, 0, 0, canvas.width, canvas.height); }
+function tick(t){
+  const dt = player.last ? t - player.last : 16; player.last = t;
+  const st = STATES[player.state];
+  if (st.frames.length > 1){
+    player.acc += dt; const step = 1000 / st.fps;
+    while (player.acc >= step){
+      player.acc -= step;
+      if (player.idx < st.frames.length - 1) player.idx++; else if (st.loop) player.idx = 0;
+      dirty = true;
+    }
+  }
+  if (player.fadeT < 1){ player.fadeT = Math.min(1, player.fadeT + dt / FADE); dirty = true; }
+  if (dirty){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (player.fadeT < 1 && player.prev) draw(player.prev, 1);
+    draw(currentImg(), player.fadeT < 1 ? player.fadeT : 1);
+    dirty = false;
+  }
+  requestAnimationFrame(tick);
+}
+const ro = new ResizeObserver(resize); ro.observe(canvas);
+
+let timers = [], running = null;
+const setFx = n => { for (const k in fx) fx[k].classList.toggle('on', k === n); };
+function say(msg, side){
+  if (!msg){ bubble.classList.remove('on'); return; }
+  if (bubble.textContent !== msg || bubble.dataset.side !== side){
+    bubble.classList.remove('on'); bubble.dataset.side = side; bubble.textContent = msg; void bubble.offsetWidth;
+  }
+  bubble.classList.add('on');
+}
+function backToWork(){ running = null; timers.forEach(clearTimeout); timers = []; setFx(null); say(null); cue.classList.remove('pulse'); play('working'); }
+function runSeq(name){
+  timers.forEach(clearTimeout); timers = []; running = name;
+  let at = 0;
+  SEQ[name].forEach(step => {
+    timers.push(setTimeout(() => { play(step.s); say(step.msg, step.side); setFx(step.fx || null); cue.classList.toggle('pulse', !!step.cue); }, at));
+    at += step.d;
+  });
+  timers.push(setTimeout(backToWork, at));
+}
+
+let zone = null, dwellT = null;
+const armed = { left:true, center:true, right:true };
+const zoneEls = [...document.querySelectorAll('.zones div')];
+function zoneOf(x){
+  const r = hero.getBoundingClientRect(), p = (x - r.left) / r.width;
+  hero.style.setProperty('--gx', (38 + p * 30).toFixed(1) + '%');
+  return p < ZONE_SPLIT[0] ? 'left' : p > ZONE_SPLIT[1] ? 'right' : 'center';
+}
+function enter(z){
+  zone = z; clearTimeout(dwellT);
+  zoneEls.forEach(el => el.classList.toggle('active', el.dataset.z === z));
+  for (const k in armed) if (k !== z) armed[k] = true;
+  if (!z || !armed[z]) return;
+  dwellT = setTimeout(() => { armed[z] = false; runSeq(z); }, DWELL[z]);
+}
+hero.addEventListener('pointermove', e => {
+  if (isTouch() || e.pointerType === 'touch') return;
+  const z = zoneOf(e.clientX); if (z !== zone) enter(z);
+});
+hero.addEventListener('pointerleave', () => { enter(null); hero.style.setProperty('--gx', '50%'); });
+stage.addEventListener('click', () => { if (isTouch() && running !== 'center') runSeq('center'); });
+
+const dbg = () => hero.classList.toggle('debug', location.hash === '#debug');
+addEventListener('hashchange', dbg); dbg();
+
+Promise.all(urls.map(load)).then(() => {
+  resize(); stage.classList.add('ready'); requestAnimationFrame(tick);
+  if (isTouch()){
+    $('#hintText').textContent = "Touche l'avatar pour lui dire bonjour !";
+    setTimeout(() => runSeq('center'), reduce ? 0 : 700);
+  }
+});
+}
+</script>
+</body>
+</html>
